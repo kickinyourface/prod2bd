@@ -1,0 +1,616 @@
+/*==============================================================*/
+/* DBMS name:      PostgreSQL 8                                 */
+/* Created on:     08-06-2017 17:49:23                          */
+/*==============================================================*/
+
+
+drop index ALMACEN_PK;
+
+drop table ALMACEN;
+
+drop index CATEGORIA_PK;
+
+drop table CATEGORIA;
+
+drop index PERTENECE_FK;
+
+drop index CIUDAD_PK;
+
+drop table CIUDAD;
+
+drop index COTIZACION_PK;
+
+drop table COTIZACION;
+
+drop index VENDIDO_FK;
+
+drop index DETALLE_PEDIDO_PK;
+
+drop table DETALLE_PEDIDO;
+
+drop index POSEE_FK;
+
+drop index TIPO_FK;
+
+drop index DOCUMENTO_PK;
+
+drop table DOCUMENTO;
+
+drop index PUEDE_FK;
+
+drop index FACTURA_PK;
+
+drop table FACTURA;
+
+drop index MARCA_PK;
+
+drop table MARCA;
+
+drop index PAIS_PK;
+
+drop table PAIS;
+
+drop index DEPENDE_FK;
+
+drop index ENCARGA_FK;
+
+drop index PEDIDO_PK;
+
+drop table PEDIDO;
+
+drop index PRODUCE_FK;
+
+drop index TIENE_FK;
+
+drop index SUMINISTRA_FK;
+
+drop index PRODUCTO_PK;
+
+drop table PRODUCTO;
+
+drop index ESTAN2_FK;
+
+drop index ESTAN1_FK;
+
+drop index PROD_ALMA_PK;
+
+drop table PROD_ALMA;
+
+drop index REALIZA2_FK;
+
+drop index REALIZA1_FK;
+
+drop index PROD_COTI_PK;
+
+drop table PROD_COTI;
+
+drop index SITUADO_FK;
+
+drop index PROVEEDOR_PK;
+
+drop table PROVEEDOR;
+
+drop index TIPO_DOCUMENTO_PK;
+
+drop table TIPO_DOCUMENTO;
+
+drop index TIPO_PAGO_PK;
+
+drop table TIPO_PAGO;
+
+drop index TIPO_TRANSPORTE_PK;
+
+drop table TIPO_TRANSPORTE;
+
+drop index OPERA_FK;
+
+drop index TRANSPORTE_PK;
+
+drop table TRANSPORTE;
+
+/*==============================================================*/
+/* Table: ALMACEN                                               */
+/*==============================================================*/
+create table ALMACEN (
+   COD_ALMACEN          INT4                 not null,
+   NOM_ALMACEN          VARCHAR(35)          null,
+   DIR_ALMACEN          VARCHAR(45)          null,
+   TEL_ALMACEN          INT4                 null,
+   constraint PK_ALMACEN primary key (COD_ALMACEN)
+);
+
+/*==============================================================*/
+/* Index: ALMACEN_PK                                            */
+/*==============================================================*/
+create unique index ALMACEN_PK on ALMACEN (
+COD_ALMACEN
+);
+
+/*==============================================================*/
+/* Table: CATEGORIA                                             */
+/*==============================================================*/
+create table CATEGORIA (
+   COD_CATEGORIA        INT4                 not null,
+   NOM_CATEGORIA        VARCHAR(35)          null,
+   constraint PK_CATEGORIA primary key (COD_CATEGORIA)
+);
+
+/*==============================================================*/
+/* Index: CATEGORIA_PK                                          */
+/*==============================================================*/
+create unique index CATEGORIA_PK on CATEGORIA (
+COD_CATEGORIA
+);
+
+/*==============================================================*/
+/* Table: CIUDAD                                                */
+/*==============================================================*/
+create table CIUDAD (
+   COD_CIUDAD           INT4                 not null,
+   COD_PAIS             INT4                 not null,
+   NOM_CIUDAD           VARCHAR(25)          null,
+   constraint PK_CIUDAD primary key (COD_CIUDAD)
+);
+
+/*==============================================================*/
+/* Index: CIUDAD_PK                                             */
+/*==============================================================*/
+create unique index CIUDAD_PK on CIUDAD (
+COD_CIUDAD
+);
+
+/*==============================================================*/
+/* Index: PERTENECE_FK                                          */
+/*==============================================================*/
+create  index PERTENECE_FK on CIUDAD (
+COD_PAIS
+);
+
+/*==============================================================*/
+/* Table: COTIZACION                                            */
+/*==============================================================*/
+create table COTIZACION (
+   COD_COTIZA           INT4                 not null,
+   COD_CLIENTE          INT4                 not null,
+   CANTI_PRODUCTOS      INT4                 null,
+   constraint PK_COTIZACION primary key (COD_COTIZA)
+);
+
+/*==============================================================*/
+/* Index: COTIZACION_PK                                         */
+/*==============================================================*/
+create unique index COTIZACION_PK on COTIZACION (
+COD_COTIZA
+);
+
+/*==============================================================*/
+/* Table: DETALLE_PEDIDO                                        */
+/*==============================================================*/
+create table DETALLE_PEDIDO (
+   COD_DETALLE          INT4                 not null,
+   COD_PRODUCTO         INT4                 not null,
+   CANTIDAD_VENTA       INT4                 null,
+   constraint PK_DETALLE_PEDIDO primary key (COD_DETALLE)
+);
+
+/*==============================================================*/
+/* Index: DETALLE_PEDIDO_PK                                     */
+/*==============================================================*/
+create unique index DETALLE_PEDIDO_PK on DETALLE_PEDIDO (
+COD_DETALLE
+);
+
+/*==============================================================*/
+/* Index: VENDIDO_FK                                            */
+/*==============================================================*/
+create  index VENDIDO_FK on DETALLE_PEDIDO (
+COD_PRODUCTO
+);
+
+/*==============================================================*/
+/* Table: DOCUMENTO                                             */
+/*==============================================================*/
+create table DOCUMENTO (
+   COD_DOCUMENTO        INT4                 not null,
+   COD_TIPDOC           INT4                 not null,
+   COD_PEDIDO           INT4                 not null,
+   NOM_DOCUMENTO        VARCHAR(35)          null,
+   RUTA_ARCHIVO         VARCHAR(80)          null,
+   constraint PK_DOCUMENTO primary key (COD_DOCUMENTO)
+);
+
+/*==============================================================*/
+/* Index: DOCUMENTO_PK                                          */
+/*==============================================================*/
+create unique index DOCUMENTO_PK on DOCUMENTO (
+COD_DOCUMENTO
+);
+
+/*==============================================================*/
+/* Index: TIPO_FK                                               */
+/*==============================================================*/
+create  index TIPO_FK on DOCUMENTO (
+COD_TIPDOC
+);
+
+/*==============================================================*/
+/* Index: POSEE_FK                                              */
+/*==============================================================*/
+create  index POSEE_FK on DOCUMENTO (
+COD_PEDIDO
+);
+
+/*==============================================================*/
+/* Table: FACTURA                                               */
+/*==============================================================*/
+create table FACTURA (
+   COD_FACTURA          INT4                 not null,
+   COD_PAGO             INT4                 not null,
+   FECHA_VENTA          DATE                 null,
+   CANT_PRODUCT         INT4                 null,
+   constraint PK_FACTURA primary key (COD_FACTURA)
+);
+
+/*==============================================================*/
+/* Index: FACTURA_PK                                            */
+/*==============================================================*/
+create unique index FACTURA_PK on FACTURA (
+COD_FACTURA
+);
+
+/*==============================================================*/
+/* Index: PUEDE_FK                                              */
+/*==============================================================*/
+create  index PUEDE_FK on FACTURA (
+COD_PAGO
+);
+
+/*==============================================================*/
+/* Table: MARCA                                                 */
+/*==============================================================*/
+create table MARCA (
+   COD_MARCA            INT4                 not null,
+   NOM_MARCA            VARCHAR(35)          null,
+   constraint PK_MARCA primary key (COD_MARCA)
+);
+
+/*==============================================================*/
+/* Index: MARCA_PK                                              */
+/*==============================================================*/
+create unique index MARCA_PK on MARCA (
+COD_MARCA
+);
+
+/*==============================================================*/
+/* Table: PAIS                                                  */
+/*==============================================================*/
+create table PAIS (
+   COD_PAIS             INT4                 not null,
+   NOM_PAIS             VARCHAR(40)          null,
+   constraint PK_PAIS primary key (COD_PAIS)
+);
+
+/*==============================================================*/
+/* Index: PAIS_PK                                               */
+/*==============================================================*/
+create unique index PAIS_PK on PAIS (
+COD_PAIS
+);
+
+/*==============================================================*/
+/* Table: PEDIDO                                                */
+/*==============================================================*/
+create table PEDIDO (
+   COD_PEDIDO           INT4                 not null,
+   COD_FACTURA          INT4                 not null,
+   COD_TRANSPORTE       INT4                 not null,
+   COD_CLIENTE          INT4                 not null,
+   FECHA_PEDIDO         DATE                 null,
+   constraint PK_PEDIDO primary key (COD_PEDIDO)
+);
+
+/*==============================================================*/
+/* Index: PEDIDO_PK                                             */
+/*==============================================================*/
+create unique index PEDIDO_PK on PEDIDO (
+COD_PEDIDO
+);
+
+/*==============================================================*/
+/* Index: ENCARGA_FK                                            */
+/*==============================================================*/
+create  index ENCARGA_FK on PEDIDO (
+COD_TRANSPORTE
+);
+
+/*==============================================================*/
+/* Index: DEPENDE_FK                                            */
+/*==============================================================*/
+create  index DEPENDE_FK on PEDIDO (
+COD_FACTURA
+);
+
+/*==============================================================*/
+/* Table: PRODUCTO                                              */
+/*==============================================================*/
+create table PRODUCTO (
+   COD_PRODUCTO         INT4                 not null,
+   COD_CATEGORIA        INT4                 not null,
+   COD_PROV             INT4                 not null,
+   COD_MARCA            INT4                 not null,
+   NOM_PRODUCTO         VARCHAR(40)          null,
+   PRECIO_UNIT          NUMERIC(10,2)        null,
+   CANTIDAD             INT4                 null,
+   constraint PK_PRODUCTO primary key (COD_PRODUCTO)
+);
+
+/*==============================================================*/
+/* Index: PRODUCTO_PK                                           */
+/*==============================================================*/
+create unique index PRODUCTO_PK on PRODUCTO (
+COD_PRODUCTO
+);
+
+/*==============================================================*/
+/* Index: SUMINISTRA_FK                                         */
+/*==============================================================*/
+create  index SUMINISTRA_FK on PRODUCTO (
+COD_PROV
+);
+
+/*==============================================================*/
+/* Index: TIENE_FK                                              */
+/*==============================================================*/
+create  index TIENE_FK on PRODUCTO (
+COD_CATEGORIA
+);
+
+/*==============================================================*/
+/* Index: PRODUCE_FK                                            */
+/*==============================================================*/
+create  index PRODUCE_FK on PRODUCTO (
+COD_MARCA
+);
+
+/*==============================================================*/
+/* Table: PROD_ALMA                                             */
+/*==============================================================*/
+create table PROD_ALMA (
+   COD_PROD_ALMA        INT4                 not null,
+   COD_PRODUCTO         INT4                 null,
+   COD_ALMACEN          INT4                 null,
+   constraint PK_PROD_ALMA primary key (COD_PROD_ALMA)
+);
+
+/*==============================================================*/
+/* Index: PROD_ALMA_PK                                          */
+/*==============================================================*/
+create unique index PROD_ALMA_PK on PROD_ALMA (
+COD_PROD_ALMA
+);
+
+/*==============================================================*/
+/* Index: ESTAN1_FK                                             */
+/*==============================================================*/
+create  index ESTAN1_FK on PROD_ALMA (
+COD_PRODUCTO
+);
+
+/*==============================================================*/
+/* Index: ESTAN2_FK                                             */
+/*==============================================================*/
+create  index ESTAN2_FK on PROD_ALMA (
+COD_ALMACEN
+);
+
+/*==============================================================*/
+/* Table: PROD_COTI                                             */
+/*==============================================================*/
+create table PROD_COTI (
+   COD_PROD_COTI        INT4                 not null,
+   COD_COTIZA           INT4                 null,
+   COD_PRODUCTO         INT4                 null,
+   constraint PK_PROD_COTI primary key (COD_PROD_COTI)
+);
+
+/*==============================================================*/
+/* Index: PROD_COTI_PK                                          */
+/*==============================================================*/
+create unique index PROD_COTI_PK on PROD_COTI (
+COD_PROD_COTI
+);
+
+/*==============================================================*/
+/* Index: REALIZA1_FK                                           */
+/*==============================================================*/
+create  index REALIZA1_FK on PROD_COTI (
+COD_PRODUCTO
+);
+
+/*==============================================================*/
+/* Index: REALIZA2_FK                                           */
+/*==============================================================*/
+create  index REALIZA2_FK on PROD_COTI (
+COD_COTIZA
+);
+
+/*==============================================================*/
+/* Table: PROVEEDOR                                             */
+/*==============================================================*/
+create table PROVEEDOR (
+   COD_PROV             INT4                 not null,
+   COD_CIUDAD           INT4                 not null,
+   NOM_PROV             VARCHAR(50)          null,
+   DIR_PROV             VARCHAR(35)          null,
+   TEL_PROV             VARCHAR(15)          null,
+   constraint PK_PROVEEDOR primary key (COD_PROV)
+);
+
+/*==============================================================*/
+/* Index: PROVEEDOR_PK                                          */
+/*==============================================================*/
+create unique index PROVEEDOR_PK on PROVEEDOR (
+COD_PROV
+);
+
+/*==============================================================*/
+/* Index: SITUADO_FK                                            */
+/*==============================================================*/
+create  index SITUADO_FK on PROVEEDOR (
+COD_CIUDAD
+);
+
+/*==============================================================*/
+/* Table: TIPO_DOCUMENTO                                        */
+/*==============================================================*/
+create table TIPO_DOCUMENTO (
+   COD_TIPDOC           INT4                 not null,
+   NOM_TIPDOC           VARCHAR(35)          null,
+   FORMATO              VARCHAR(4)           null,
+   constraint PK_TIPO_DOCUMENTO primary key (COD_TIPDOC)
+);
+
+/*==============================================================*/
+/* Index: TIPO_DOCUMENTO_PK                                     */
+/*==============================================================*/
+create unique index TIPO_DOCUMENTO_PK on TIPO_DOCUMENTO (
+COD_TIPDOC
+);
+
+/*==============================================================*/
+/* Table: TIPO_PAGO                                             */
+/*==============================================================*/
+create table TIPO_PAGO (
+   COD_PAGO             INT4                 not null,
+   NOM_PAGO             VARCHAR(35)          null,
+   constraint PK_TIPO_PAGO primary key (COD_PAGO)
+);
+
+/*==============================================================*/
+/* Index: TIPO_PAGO_PK                                          */
+/*==============================================================*/
+create unique index TIPO_PAGO_PK on TIPO_PAGO (
+COD_PAGO
+);
+
+/*==============================================================*/
+/* Table: TIPO_TRANSPORTE                                       */
+/*==============================================================*/
+create table TIPO_TRANSPORTE (
+   COD_TIPTRANS         INT4                 not null,
+   NOM_TIPTRANS         VARCHAR(35)          null,
+   constraint PK_TIPO_TRANSPORTE primary key (COD_TIPTRANS)
+);
+
+/*==============================================================*/
+/* Index: TIPO_TRANSPORTE_PK                                    */
+/*==============================================================*/
+create unique index TIPO_TRANSPORTE_PK on TIPO_TRANSPORTE (
+COD_TIPTRANS
+);
+
+/*==============================================================*/
+/* Table: TRANSPORTE                                            */
+/*==============================================================*/
+create table TRANSPORTE (
+   COD_TRANSPORTE       INT4                 not null,
+   COD_TIPTRANS         INT4                 not null,
+   NOM_TRANSPORTE       VARCHAR(35)          null,
+   FECHA_DESPACHO       DATE                 null,
+   constraint PK_TRANSPORTE primary key (COD_TRANSPORTE)
+);
+
+/*==============================================================*/
+/* Index: TRANSPORTE_PK                                         */
+/*==============================================================*/
+create unique index TRANSPORTE_PK on TRANSPORTE (
+COD_TRANSPORTE
+);
+
+/*==============================================================*/
+/* Index: OPERA_FK                                              */
+/*==============================================================*/
+create  index OPERA_FK on TRANSPORTE (
+COD_TIPTRANS
+);
+
+alter table CIUDAD
+   add constraint FK_CIUDAD_PERTENECE_PAIS foreign key (COD_PAIS)
+      references PAIS (COD_PAIS)
+      on delete restrict on update restrict;
+
+alter table DETALLE_PEDIDO
+   add constraint FK_DETALLE__VENDIDO_PRODUCTO foreign key (COD_PRODUCTO)
+      references PRODUCTO (COD_PRODUCTO)
+      on delete restrict on update restrict;
+
+alter table DOCUMENTO
+   add constraint FK_DOCUMENT_POSEE_PEDIDO foreign key (COD_PEDIDO)
+      references PEDIDO (COD_PEDIDO)
+      on delete restrict on update restrict;
+
+alter table DOCUMENTO
+   add constraint FK_DOCUMENT_TIPO_TIPO_DOC foreign key (COD_TIPDOC)
+      references TIPO_DOCUMENTO (COD_TIPDOC)
+      on delete restrict on update restrict;
+
+alter table FACTURA
+   add constraint FK_FACTURA_PUEDE_TIPO_PAG foreign key (COD_PAGO)
+      references TIPO_PAGO (COD_PAGO)
+      on delete restrict on update restrict;
+
+alter table PEDIDO
+   add constraint FK_PEDIDO_DEPENDE_FACTURA foreign key (COD_FACTURA)
+      references FACTURA (COD_FACTURA)
+      on delete restrict on update restrict;
+
+alter table PEDIDO
+   add constraint FK_PEDIDO_ENCARGA_TRANSPOR foreign key (COD_TRANSPORTE)
+      references TRANSPORTE (COD_TRANSPORTE)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO
+   add constraint FK_PRODUCTO_PRODUCE_MARCA foreign key (COD_MARCA)
+      references MARCA (COD_MARCA)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO
+   add constraint FK_PRODUCTO_SUMINISTR_PROVEEDO foreign key (COD_PROV)
+      references PROVEEDOR (COD_PROV)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO
+   add constraint FK_PRODUCTO_TIENE_CATEGORI foreign key (COD_CATEGORIA)
+      references CATEGORIA (COD_CATEGORIA)
+      on delete restrict on update restrict;
+
+alter table PROD_ALMA
+   add constraint FK_PROD_ALM_ESTAN1_PRODUCTO foreign key (COD_PRODUCTO)
+      references PRODUCTO (COD_PRODUCTO)
+      on delete restrict on update restrict;
+
+alter table PROD_ALMA
+   add constraint FK_PROD_ALM_ESTAN2_ALMACEN foreign key (COD_ALMACEN)
+      references ALMACEN (COD_ALMACEN)
+      on delete restrict on update restrict;
+
+alter table PROD_COTI
+   add constraint FK_PROD_COT_REALIZA1_PRODUCTO foreign key (COD_PRODUCTO)
+      references PRODUCTO (COD_PRODUCTO)
+      on delete restrict on update restrict;
+
+alter table PROD_COTI
+   add constraint FK_PROD_COT_REALIZA2_COTIZACI foreign key (COD_COTIZA)
+      references COTIZACION (COD_COTIZA)
+      on delete restrict on update restrict;
+
+alter table PROVEEDOR
+   add constraint FK_PROVEEDO_SITUADO_CIUDAD foreign key (COD_CIUDAD)
+      references CIUDAD (COD_CIUDAD)
+      on delete restrict on update restrict;
+
+alter table TRANSPORTE
+   add constraint FK_TRANSPOR_OPERA_TIPO_TRA foreign key (COD_TIPTRANS)
+      references TIPO_TRANSPORTE (COD_TIPTRANS)
+      on delete restrict on update restrict;
+
