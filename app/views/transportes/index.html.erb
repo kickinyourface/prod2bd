@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Transportes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod tiptrans</th>
+      <th>Nom transporte</th>
+      <th>Fecha despacho</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transportes.each do |transporte| %>
+      <tr>
+        <td><%= transporte.cod_tiptrans %></td>
+        <td><%= transporte.nom_transporte %></td>
+        <td><%= transporte.fecha_despacho %></td>
+        <td><%= link_to 'Show', transporte %></td>
+        <td><%= link_to 'Edit', edit_transporte_path(transporte) %></td>
+        <td><%= link_to 'Destroy', transporte, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transporte', new_transporte_path %>

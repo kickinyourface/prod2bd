@@ -1,0 +1,29 @@
+<%= form_for(@almacen) do |f| %>
+  <% if @almacen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@almacen.errors.count, "error") %> prohibited this almacen from being saved:</h2>
+
+      <ul>
+      <% @almacen.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nom_almacen %><br>
+    <%= f.text_field :nom_almacen %>
+  </div>
+  <div class="field">
+    <%= f.label :dir_almacen %><br>
+    <%= f.text_field :dir_almacen %>
+  </div>
+  <div class="field">
+    <%= f.label :tel_almacen %><br>
+    <%= f.number_field :tel_almacen %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

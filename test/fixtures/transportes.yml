@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_tiptrans: 1
+  nom_transporte: MyString
+  fecha_despacho: 2017-06-15
+
+two:
+  cod_tiptrans: 1
+  nom_transporte: MyString
+  fecha_despacho: 2017-06-15

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod factura:</strong>
+  <%= @pedido.cod_factura %>
+</p>
+
+<p>
+  <strong>Cod transporte:</strong>
+  <%= @pedido.cod_transporte %>
+</p>
+
+<p>
+  <strong>Cod cliente:</strong>
+  <%= @pedido.cod_cliente %>
+</p>
+
+<p>
+  <strong>Fecha pedido:</strong>
+  <%= @pedido.fecha_pedido %>
+</p>
+
+<%= link_to 'Edit', edit_pedido_path(@pedido) %> |
+<%= link_to 'Back', pedidos_path %>

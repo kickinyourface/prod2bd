@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod cotiza:</strong>
+  <%= @prod_coti.cod_cotiza %>
+</p>
+
+<p>
+  <strong>Cod producto:</strong>
+  <%= @prod_coti.cod_producto %>
+</p>
+
+<%= link_to 'Edit', edit_prod_coti_path(@prod_coti) %> |
+<%= link_to 'Back', prod_cotis_path %>

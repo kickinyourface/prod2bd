@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_pago: 1
+  fecha_venta: 2017-06-15
+  cant_product: 1
+
+two:
+  cod_pago: 1
+  fecha_venta: 2017-06-15
+  cant_product: 1

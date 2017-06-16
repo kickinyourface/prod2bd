@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_tipdoc: 1
+  cod_pedido: 1
+  nom_documento: MyString
+  ruta_archivo: MyString
+
+two:
+  cod_tipdoc: 1
+  cod_pedido: 1
+  nom_documento: MyString
+  ruta_archivo: MyString

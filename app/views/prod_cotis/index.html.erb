@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Prod Cotis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod cotiza</th>
+      <th>Cod producto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prod_cotis.each do |prod_coti| %>
+      <tr>
+        <td><%= prod_coti.cod_cotiza %></td>
+        <td><%= prod_coti.cod_producto %></td>
+        <td><%= link_to 'Show', prod_coti %></td>
+        <td><%= link_to 'Edit', edit_prod_coti_path(prod_coti) %></td>
+        <td><%= link_to 'Destroy', prod_coti, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prod coti', new_prod_coti_path %>

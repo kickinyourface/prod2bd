@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_categoria: 1
+  nom_categoria: MyString
+
+two:
+  cod_categoria: 1
+  nom_categoria: MyString

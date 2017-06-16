@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cotizacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cod cliente</th>
+      <th>Canti productos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cotizacions.each do |cotizacion| %>
+      <tr>
+        <td><%= cotizacion.cod_cliente %></td>
+        <td><%= cotizacion.canti_productos %></td>
+        <td><%= link_to 'Show', cotizacion %></td>
+        <td><%= link_to 'Edit', edit_cotizacion_path(cotizacion) %></td>
+        <td><%= link_to 'Destroy', cotizacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cotizacion', new_cotizacion_path %>

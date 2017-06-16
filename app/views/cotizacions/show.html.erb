@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod cliente:</strong>
+  <%= @cotizacion.cod_cliente %>
+</p>
+
+<p>
+  <strong>Canti productos:</strong>
+  <%= @cotizacion.canti_productos %>
+</p>
+
+<%= link_to 'Edit', edit_cotizacion_path(@cotizacion) %> |
+<%= link_to 'Back', cotizacions_path %>

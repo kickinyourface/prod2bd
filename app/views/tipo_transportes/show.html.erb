@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod tiptrans:</strong>
+  <%= @tipo_transporte.cod_tiptrans %>
+</p>
+
+<p>
+  <strong>Integer:</strong>
+  <%= @tipo_transporte.integer %>
+</p>
+
+<p>
+  <strong>Nom tiptrans:</strong>
+  <%= @tipo_transporte.nom_tiptrans %>
+</p>
+
+<%= link_to 'Edit', edit_tipo_transporte_path(@tipo_transporte) %> |
+<%= link_to 'Back', tipo_transportes_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_tipodoc: 1
+  nom_tipdoc: MyString
+  formato: MyString
+
+two:
+  cod_tipodoc: 1
+  nom_tipdoc: MyString
+  formato: MyString

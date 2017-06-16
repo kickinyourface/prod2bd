@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod producto:</strong>
+  <%= @detalle_pedido.cod_producto %>
+</p>
+
+<p>
+  <strong>Cantidad venta:</strong>
+  <%= @detalle_pedido.cantidad_venta %>
+</p>
+
+<%= link_to 'Edit', edit_detalle_pedido_path(@detalle_pedido) %> |
+<%= link_to 'Back', detalle_pedidos_path %>

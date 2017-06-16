@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_tiptrans: MyString
+  integer: MyString
+  nom_tiptrans: MyString
+
+two:
+  cod_tiptrans: MyString
+  integer: MyString
+  nom_tiptrans: MyString

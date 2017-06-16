@@ -1,0 +1,25 @@
+<%= form_for(@prod_coti) do |f| %>
+  <% if @prod_coti.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prod_coti.errors.count, "error") %> prohibited this prod_coti from being saved:</h2>
+
+      <ul>
+      <% @prod_coti.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cod_cotiza %><br>
+    <%= f.number_field :cod_cotiza %>
+  </div>
+  <div class="field">
+    <%= f.label :cod_producto %><br>
+    <%= f.number_field :cod_producto %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

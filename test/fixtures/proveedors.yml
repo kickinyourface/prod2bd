@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cod_prov: 1
+  nom_prov: MyString
+  dir_prov: MyString
+  tel_prov: MyString
+
+two:
+  cod_prov: 1
+  nom_prov: MyString
+  dir_prov: MyString
+  tel_prov: MyString

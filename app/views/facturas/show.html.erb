@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cod pago:</strong>
+  <%= @factura.cod_pago %>
+</p>
+
+<p>
+  <strong>Fecha venta:</strong>
+  <%= @factura.fecha_venta %>
+</p>
+
+<p>
+  <strong>Cant product:</strong>
+  <%= @factura.cant_product %>
+</p>
+
+<%= link_to 'Edit', edit_factura_path(@factura) %> |
+<%= link_to 'Back', facturas_path %>
